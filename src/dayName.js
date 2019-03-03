@@ -1,12 +1,12 @@
 export default function(dayIndex) {
   const dayNames = [
+    'Sonntag',
     'Montag',
     'Dienstag',
     'Mittwoch',
     'Donnerstag',
     'Freitag',
-    'Samstag',
-    'Sonntag'
+    'Samstag'
   ];
-  return dayNames[dayIndex - 1];
+  return dayNames[dayIndex];
 }
