@@ -5,4 +5,11 @@ jobs:
       - image: circleci/node:latest # the primary container, where your job's commands are run
     steps:
       - checkout # check out the code in the project directory
-      - run: yarn install && yarn start && node_modules/.bin/cypress run
+      - run:
+          name: Setup Dependencies
+          command: yarn install
+      - run:
+          command: yarn start
+          background: true
+      - run:
+          command: node_modules/.bin/cypress run
