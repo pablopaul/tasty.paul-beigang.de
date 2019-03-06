@@ -1,15 +1,11 @@
-version: 2
-jobs:
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1
+workflows:
   build:
-    docker: # use the docker executor type; machine and macos executors are also supported
-      - image: circleci/node:latest # the primary container, where your job's commands are run
-    steps:
-      - checkout # check out the code in the project directory
-      - run:
-          name: Setup Dependencies
-          command: yarn install
-      - run:
-          command: yarn start
-          background: true
-      - run:
-          command: node_modules/.bin/cypress run
+    jobs:
+      - cypress/run:
+          yarn: true
+          start: yarn start
+          wait-on: 'http-get://localhost:3000'
+          store_artifacts: true
